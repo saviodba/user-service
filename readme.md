@@ -73,16 +73,21 @@ A aplicação segue os princípios de **Clean Architecture** com as seguintes ca
 ### Passos
 ```bash
 # Clone o repositório
-git clone https://github.com/sua-org/user-service.git
+git clone https://github.com/saviodba/user-service.git
 cd user-service
 
 # Instale as dependências
 npm install
 
+# Execute para fazer a geração do Prisma Client, que é a biblioteca tipada que você usa no seu código para acessar o banco de dados. Só execute se não tiver a pasta "../src/infrastructure/database/generated/prisma"
+npx prisma generate
+
+
 # Configure as variáveis de ambiente
 cp .env.example .env
 
 # Execute as migrações do banco
+# Cria e aplica migrações no banco de dados de acordo com as mudanças no schema.prisma
 npx prisma migrate dev
 
 # Inicie a aplicação
