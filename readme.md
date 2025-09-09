@@ -16,36 +16,40 @@ O serviço permite:
 A aplicação segue os princípios de **Clean Architecture** com as seguintes camadas principais:
 
 
-📦 user-service
-┣ 📂 dist # Código compilado para produção
-┣ 📂 logs # Logs de execução
-┣ 📂 node_modules # Dependências do projeto
-┣ 📂 prisma # Configuração do ORM Prisma
-┃ ┗ 📜 schema.prisma # Definição do banco de dados
-┣ 📂 src
-┃ ┣ 📂 adapters # Adaptadores (controllers, http, etc.)
-┃ ┣ 📂 application
-┃ ┃ ┣ 📂 DTOs # Objetos de transferência de dados
-┃ ┃ ┗ 📂 usecases # Casos de uso (regras de negócio)
-┃ ┃ ┣ 📂 perfil # Casos de uso relacionados a perfis
-┃ ┃ ┗ 📂 user # Casos de uso relacionados a usuários
-┃ ┣ 📂 config # Configurações gerais (variáveis, logger, etc.)
-┃ ┣ 📂 core
-┃ ┃ ┗ 📂 errors # Tratamento centralizado de erros
-┃ ┣ 📂 domain
-┃ ┃ ┣ 📂 entities # Entidades do domínio
-┃ ┃ ┣ 📂 repositories # Interfaces dos repositórios
-┃ ┃ ┗ 📂 value-objects # Objetos de valor do domínio
-┃ ┣ 📂 infrastructure # Implementações técnicas (ORM, serviços externos)
-┃ ┗ 📂 shared # Utilitários e módulos compartilhados
-┣ 📜 .env.example # Exemplo de variáveis de ambiente
-┣ 📜 .gitignore # Arquivos ignorados pelo Git
-┣ 📜 package.json # Dependências do projeto
-┣ 📜 package-lock.json # Lock das dependências
-┣ 📜 tsconfig.json # Configuração do TypeScript
-┣ 📜 tsconfig.tsbuildinfo# Cache de build do TS
-┗ 📜 README.md # Documentação do projeto
+## 📂 Estrutura do Projeto
 
+```bash
+📦 user-service
+┣ 📂 dist                 # Código compilado para produção
+┣ 📂 logs                 # Logs de execução
+┣ 📂 node_modules         # Dependências do projeto
+┣ 📂 prisma               # Configuração do ORM Prisma
+┃ ┗ 📜 schema.prisma      # Definição do banco de dados
+┣ 📂 src
+┃ ┣ 📂 adapters           # Adaptadores (controllers, http, etc.)
+┃ ┣ 📂 application        # Camada de aplicação
+┃ ┃ ┣ 📂 DTOs             # Objetos de transferência de dados
+┃ ┃ ┗ 📂 usecases         # Casos de uso (regras de negócio)
+┃ ┃   ┣ 📂 perfil         # Casos de uso relacionados a perfis
+┃ ┃   ┗ 📂 user           # Casos de uso relacionados a usuários
+┃ ┣ 📂 config             # Configurações gerais (variáveis, logger, etc.)
+┃ ┣ 📂 core               # Núcleo da aplicação
+┃ ┃ ┗ 📂 errors           # Tratamento centralizado de erros
+┃ ┣ 📂 domain             # Camada de domínio
+┃ ┃ ┣ 📂 entities         # Entidades do domínio
+┃ ┃ ┣ 📂 repositories     # Interfaces dos repositórios
+┃ ┃ ┗ 📂 value-objects    # Objetos de valor do domínio
+┃ ┣ 📂 infrastructure     # Implementações técnicas (ORM, serviços externos)
+┃ ┗ 📂 shared             # Utilitários e módulos compartilhados
+┣ 📜 .env.example         # Exemplo de variáveis de ambiente
+┣ 📜 .gitignore           # Arquivos ignorados pelo Git
+┣ 📜 package.json         # Dependências do projeto
+┣ 📜 package-lock.json    # Lock das dependências
+┣ 📜 tsconfig.json        # Configuração do TypeScript
+┣ 📜 tsconfig.tsbuildinfo # Cache de build do TS
+┗ 📜 README.md            # Documentação do projeto
+
+```
 
 ---
 
