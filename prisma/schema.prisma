@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/infrastructure/database/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model logins {
+  id         Int           @id @default(autoincrement())
+  name       String        @db.VarChar(255)
+  user_name  String        @db.VarChar(255)
+  active     Boolean
+  password   String        @db.VarChar(255)
+  idperfil   Int
+  createdAt  DateTime      @default(now()) @db.DateTime(0)
+  updatedAt  DateTime      @updatedAt @db.DateTime(0)
+  cpf        String        @db.VarChar(255)
+  email      String        @db.VarChar(255)
+  telefone   String        @db.VarChar(255)
+  usuarioAPi Boolean
+  chaveApi   String        @db.VarChar(255)
+  perfil     perfilusuario @relation(fields: [idperfil], references: [id])
+}
+
+
+model modulos {
+  id             Int             @id @default(autoincrement())
+  desc_modulo    String          @db.VarChar(255)
+  createdAt      DateTime        @db.DateTime(0)
+  updatedAt      DateTime        @db.DateTime(0)
+  perfilXmodulos perfil_modulo[]
+}
+
+model perfil_modulo {
+  id             Int           @id @default(autoincrement())
+  idperfil       Int
+  idmodulo       Int
+  createdAt      DateTime      @default(now()) @db.DateTime(0)
+  updatedAt      DateTime      @updatedAt @db.DateTime(0)
+  perfil         perfilusuario @relation(fields: [idperfil], references: [id])
+  modulo         modulos       @relation(fields: [idmodulo], references: [id])
+
+  @@index([idmodulo], map: "fk_idmodulo")
+  @@index([idperfil], map: "fk_idperfil")
+}
+
+model perfilusuario {
+  id             Int             @id @default(autoincrement())
+  descricao      String          @db.VarChar(255)
+  logins         logins[]
+  perfilXmodulos perfil_modulo[]
+}
